@@ -10,54 +10,62 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            if (!isAgedBrieItem(item) && !isBackstagePassItem(item)) {
-                if (isPositiveQualityItem(item)) {
-                    if (!isSulfurasItem(item)) {
-                        decreaseQuality(item);
-                    }
-                }
-            } else {
-                if (isQualityBelowFifty(item)) {
-                    increaseQuality(item);
 
-                    if (isBackstagePassItem(item)) {
-                        if (isSellInDaysTenOrBelow(item)) {
-                            if (isQualityBelowFifty(item)) {
-                                increaseQuality(item);
-                            }
-                        }
-
-                        if (isSellInDaysFiveOrBelow(item)) {
-                            if (isQualityBelowFifty(item)) {
-                                increaseQuality(item);
-                            }
-                        }
-                    }
-                }
+            if(isSulfurasItem(item)) {
+                break;
             }
 
-            if (!isSulfurasItem(item)) {
-                decreaseSellIn(item);
+            decreaseSellIn(item);
+
+            if(isAgedBrieItem(item)){
+                updateAgedBrieQuality(item);
+            }
+            else if(isBackstagePassItem(item)){
+                updateBackstagePassQuality(item);
+            }
+            else {
+                updateNormalItem(item);
+            }
+        }
+    }
+
+    private void updateAgedBrieQuality(Item item){
+        if(isQualityBelowFifty(item))
+            if(hasSellInDaysFinished(item)) {
+                increaseQuality(item, 2);
+            }
+            else {
+                increaseQuality(item, 1);
             }
 
-            if (hasSellInDaysFinished(item)) {
-                if (!isAgedBrieItem(item)) {
-                    if (!isBackstagePassItem(item)) {
-                        if (isPositiveQualityItem(item)) {
-                            if (!isSulfurasItem(item)) {
-                                decreaseQuality(item);
-                            }
-                        }
-                    } else {
-                        decreaseQualityToZero(item);
-                    }
+    }
+
+    private void updateBackstagePassQuality(Item item){
+        if(hasSellInDaysFinished(item) && !isQualityZero(item)){
+            decreaseQualityToZero(item);
+        }
+        else {
+            if (isQualityBelowFifty(item)) {
+                if (isSellInDaysFiveOrBelow(item)) {
+                    increaseQuality(item, 3);
+                } else if (isSellInDaysTenOrBelow(item)) {
+                    increaseQuality(item, 2);
                 } else {
-                    if (isQualityBelowFifty(item)) {
-                        increaseQuality(item);
-                    }
+                    increaseQuality(item, 1);
                 }
             }
         }
+    }
+
+    private void updateNormalItem(Item item){
+        if(!isQualityZero(item)) {
+            if (hasSellInDaysFinished(item)) {
+                decreaseQuality(item, 2);
+            } else {
+                decreaseQuality(item, 1);
+            }
+        }
+
     }
 
     private boolean isAgedBrieItem(Item item){
@@ -76,12 +84,12 @@ class GildedRose {
         return item.quality > 0;
     }
 
-    private void decreaseQuality(Item item){
-        item.quality = item.quality - 1;
+    private void decreaseQuality(Item item, int decreaseDownTo){
+        item.quality = item.quality - decreaseDownTo;
     }
 
-    private void increaseQuality(Item item){
-        item.quality = item.quality + 1;
+    private void increaseQuality(Item item, int sumUpTo){
+        item.quality = item.quality + sumUpTo;
     }
 
     private void decreaseSellIn(Item item){
@@ -107,5 +115,9 @@ class GildedRose {
 
     private void decreaseQualityToZero(Item item){
         item.quality = 0;
+    }
+
+    private boolean isQualityZero(Item item){
+        return item.quality == 0;
     }
 }
