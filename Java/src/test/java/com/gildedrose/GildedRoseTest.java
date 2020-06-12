@@ -89,6 +89,14 @@ class GildedRoseTest {
     }
 
     @Test
+    public void backstagePassQualityIncrease(){
+        Item[] itemToTest = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 15, 10)};
+        GildedRose gildedRose = new GildedRose(itemToTest);
+        gildedRose.updateQuality();
+        assertEquals(11, gildedRose.items[0].quality);
+    }
+
+    @Test
     public void backstagePassTenDaysQualityIncrease(){
         Item[] itemToTest = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10)};
         GildedRose gildedRose = new GildedRose(itemToTest);
