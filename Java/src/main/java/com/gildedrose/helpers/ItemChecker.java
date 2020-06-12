@@ -16,8 +16,8 @@ public class ItemChecker {
         return item.name.equalsIgnoreCase("Backstage passes to a TAFKAL80ETC concert");
     }
 
-    public static boolean isPositiveQualityItem(Item item){
-        return item.quality > 0;
+    public static boolean isConjuredItem(Item item){
+        return item.name.toLowerCase().contains("conjured");
     }
 
     public static boolean isQualityBelowFifty(Item item){
