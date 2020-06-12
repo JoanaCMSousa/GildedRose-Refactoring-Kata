@@ -4,7 +4,7 @@ import com.gildedrose.Item;
 
 public class ItemUpdater {
 
-    public void updateAgedBrieQuality(Item item){
+    public static void updateAgedBrieQuality(Item item){
         if(ItemChecker.isQualityBelowFifty(item))
             if(ItemChecker.hasSellInDaysFinished(item)) {
                 QualitySellInUpdater.increaseQuality(item, 2);
@@ -15,7 +15,7 @@ public class ItemUpdater {
 
     }
 
-    public void updateBackstagePassQuality(Item item){
+    public static void updateBackstagePassQuality(Item item){
         if(ItemChecker.hasSellInDaysFinished(item) && !ItemChecker.isQualityZero(item)){
             QualitySellInUpdater.decreaseQualityToZero(item);
         }
@@ -32,7 +32,17 @@ public class ItemUpdater {
         }
     }
 
-    public void updateNormalItem(Item item){
+    public static void updateConjuredItem(Item item){
+        if(!ItemChecker.isQualityZero(item)){
+            if(ItemChecker.hasSellInDaysFinished(item)){
+                QualitySellInUpdater.decreaseQuality(item, 4);
+            } else {
+                QualitySellInUpdater.decreaseQuality(item, 2);
+            }
+        }
+    }
+
+    public static void updateNormalItem(Item item){
         if(!ItemChecker.isQualityZero(item)) {
             if (ItemChecker.hasSellInDaysFinished(item)) {
                 QualitySellInUpdater.decreaseQuality(item, 2);
