@@ -24,7 +24,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void qualityDecreaseTwiceTest(){
+    public void qualityDecreaseTwiceAsMuchTest(){
         Item[] itemToTest = new Item[]{new Item("test", -1, 10)};
         GildedRose gildedRose = new GildedRose(itemToTest);
         gildedRose.updateQuality();
@@ -64,7 +64,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void agedBrieQualityIncreaseTwiceTest(){
+    public void agedBrieQualityIncreaseTwiceAsMuchTest(){
         Item[] itemToTest = new Item[] {new Item("Aged Brie", -1, 8)};
         GildedRose gildedRose = new GildedRose(itemToTest);
         gildedRose.updateQuality();
@@ -80,7 +80,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void sulfurasNotChangeSellInAndQuality(){
+    public void legendaryNoChangeSellInAndQuality(){
         Item[] itemToTest = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 10, 10)};
         GildedRose gildedRose = new GildedRose(itemToTest);
         gildedRose.updateQuality();
@@ -115,6 +115,30 @@ class GildedRoseTest {
     @Test
     public void backstagePassSellInDecreaseTest(){
         Item[] itemToTest = new Item[]{new Item("Backstage passes to a TAFKAL80ETC concert", 11, 15)};
+        GildedRose gildedRose = new GildedRose(itemToTest);
+        gildedRose.updateQuality();
+        assertEquals(10, gildedRose.items[0].sellIn);
+    }
+
+    @Test
+    public void conjuredItemDecreaseTest(){
+        Item[] itemToTest = new Item[] {new Item("Conjured Mana Cake", 5, 10)};
+        GildedRose gildedRose = new GildedRose(itemToTest);
+        gildedRose.updateQuality();
+        assertEquals(8, gildedRose.items[0].quality);
+    }
+
+    @Test
+    public void conjuredItemDecreaseTwiceAsMuch(){
+        Item[] itemToTest = new Item[]{new Item("Conjured Mana Cake", -1, 8)};
+        GildedRose gildedRose = new GildedRose(itemToTest);
+        gildedRose.updateQuality();
+        assertEquals(4,gildedRose.items[0].quality);
+    }
+
+    @Test
+    public void conjuredItemSellInDecreaseTest(){
+        Item[] itemToTest = new Item[] {new Item("Conjured Mana Cake", 11, 10)};
         GildedRose gildedRose = new GildedRose(itemToTest);
         gildedRose.updateQuality();
         assertEquals(10, gildedRose.items[0].sellIn);
