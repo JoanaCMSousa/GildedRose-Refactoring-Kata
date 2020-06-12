@@ -6,11 +6,9 @@ import com.gildedrose.helpers.QualitySellInUpdater;
 
 class GildedRose {
     Item[] items;
-    ItemUpdater itemUpdater;
 
     public GildedRose(Item[] items) {
         this.items = items;
-        itemUpdater = new ItemUpdater();
     }
 
     public void updateQuality() {
@@ -18,19 +16,22 @@ class GildedRose {
             Item item = items[i];
 
             if(ItemChecker.isLegendaryItem(item)) {
-                break;
+                continue;
             }
 
             QualitySellInUpdater.decreaseSellIn(item);
 
             if(ItemChecker.isAgedBrieItem(item)){
-                itemUpdater.updateAgedBrieQuality(item);
+                ItemUpdater.updateAgedBrieQuality(item);
             }
             else if(ItemChecker.isBackstagePassItem(item)){
-                itemUpdater.updateBackstagePassQuality(item);
+                ItemUpdater.updateBackstagePassQuality(item);
+            }
+            else if(ItemChecker.isConjuredItem(item)){
+                ItemUpdater.updateConjuredItem(item);
             }
             else {
-                itemUpdater.updateNormalItem(item);
+                ItemUpdater.updateNormalItem(item);
             }
         }
     }
