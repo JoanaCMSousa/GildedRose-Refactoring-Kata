@@ -1,6 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.helpers;
 
-import com.gildedrose.helpers.ItemChecker;
+import com.gildedrose.Item;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
