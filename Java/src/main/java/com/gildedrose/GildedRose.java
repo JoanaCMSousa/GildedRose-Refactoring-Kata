@@ -4,7 +4,10 @@ import com.gildedrose.helpers.ItemChecker;
 import com.gildedrose.helpers.ItemUpdater;
 import com.gildedrose.helpers.QualitySellInUpdater;
 
+import java.util.logging.Logger;
+
 class GildedRose {
+    public static Logger logger=Logger.getLogger("global");
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -14,6 +17,11 @@ class GildedRose {
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
+
+            if(item == null){
+                logger.info(String.format("Item with index %s is null. Skipping item", i));
+                continue;
+            }
 
             if(ItemChecker.isLegendaryItem(item)) {
                 continue;
