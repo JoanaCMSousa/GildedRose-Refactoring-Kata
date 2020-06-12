@@ -29,4 +29,34 @@ public class ItemCheckerTest {
         Item item = new Item("Conjured Mana Cake", 10, 10);
         assertTrue(ItemChecker.isConjuredItem(item));
     }
+
+    @Test
+    public void isQualityBelowFiftyTest(){
+        Item item = new Item("Item", 10, 49);
+        assertTrue(ItemChecker.isQualityBelowFifty(item));
+    }
+
+    @Test
+    public void isSellInDaysTenOrBelowTest(){
+        Item item = new Item("Item", 10, 10);
+        assertTrue(ItemChecker.isSellInDaysTenOrBelow(item));
+    }
+
+    @Test
+    public void isSellInDaysFiveOrBelowTest(){
+        Item item = new Item("Item", 5, 10);
+        assertTrue(ItemChecker.isSellInDaysFiveOrBelow(item));
+    }
+
+    @Test
+    public void hasSellInDaysFinishedTest(){
+        Item item = new Item("Item", 0, 10);
+        assertTrue(ItemChecker.hasSellInDaysFinished(item));
+    }
+
+    @Test
+    public void isQualityZeroTest(){
+        Item item = new Item("Item", 10, 0);
+        assertTrue(ItemChecker.isQualityZero(item));
+    }
 }
