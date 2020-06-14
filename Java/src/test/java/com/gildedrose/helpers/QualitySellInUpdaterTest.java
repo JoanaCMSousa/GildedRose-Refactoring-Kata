@@ -4,11 +4,15 @@ import com.gildedrose.Item;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Random;
 
 public class QualitySellInUpdaterTest {
 
-    Random random = new Random();
+    Random random = new Random(); //TODO: NO RANDOM
+
+    //TODO: Add more tests -> reaching 50 or 0
 
     @Test
     public void decreaseQualityTest(){
@@ -27,16 +31,23 @@ public class QualitySellInUpdaterTest {
     }
 
     @Test
-    public void decreaseSellInTest(){
+    public void decreaseQualityToZeroTest(){
         Item item = new Item("Item", 10, 10);
-        QualitySellInUpdater.decreaseSellIn(item);
-        assertEquals(9, item.sellIn);
+        QualitySellInUpdater.setQualityToMin(item);
+        assertEquals(0, item.quality);
     }
 
     @Test
-    public void decreaseQualityToZeroTest(){
-        Item item = new Item("Item", 10, 10);
-        QualitySellInUpdater.decreaseQualityToZero(item);
-        assertEquals(0, item.quality);
+    public void isQualityBelowFiftyTest(){
+        Item item = new Item("Item", 10, 49);
+        assertTrue(QualitySellInUpdater.isQualityBelowMax(item));
+        //TODO: Check other limits (50, 51)
     }
+
+//    @Test
+//    public void isQualityZeroTest(){
+//        Item item = new Item("Item", 10, 0);
+//        assertTrue(ItemChecker.isQualityMinOrBelow(item));
+//        //TODO: Check other value (-1, 1)
+//    }
 }

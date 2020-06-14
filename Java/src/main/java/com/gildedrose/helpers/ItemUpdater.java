@@ -50,6 +50,6 @@ public class ItemUpdater {
     }
 
     public static void decreaseSellIn(Item item){
-        QualitySellInUpdater.decreaseSellIn(item);
+        item.sellIn = item.sellIn - 1;
     }
 }

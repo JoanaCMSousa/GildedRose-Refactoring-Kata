@@ -76,4 +76,11 @@ public class ItemUpdaterTest {
         ItemUpdater.updateNormalItem(itemNegativeSellInDays);
         assertEquals(8, itemNegativeSellInDays.quality);
     }
+
+    @Test
+    public void decreaseSellInTest(){
+        Item item = new Item("Item", 10, 10);
+        ItemUpdater.decreaseSellIn(item);
+        assertEquals(9, item.sellIn);
+    }
 }

@@ -9,7 +9,7 @@ public class QualitySellInUpdater {
 
     private QualitySellInUpdater(){}
 
-    public static void decreaseQuality(Item item, int decreaseBy){
+    static void decreaseQuality(Item item, int decreaseBy){
         item.quality = item.quality - decreaseBy;
 
         if(isQualityMinOrBelow(item)){
@@ -17,7 +17,7 @@ public class QualitySellInUpdater {
         }
     }
 
-    public static void increaseQuality(Item item, int increaseBy){
+    static void increaseQuality(Item item, int increaseBy){
         item.quality = item.quality + increaseBy;
 
         if(!isQualityBelowMax(item)){
@@ -25,19 +25,15 @@ public class QualitySellInUpdater {
         }
     }
 
-    public static void decreaseSellIn(Item item){
-        item.sellIn = item.sellIn - 1;
-    }
-
-    public static void setQualityToMin(Item item){
+    static void setQualityToMin(Item item){
         item.quality = 0;
     }
 
-    private static boolean isQualityBelowMax(Item item){
+    static boolean isQualityBelowMax(Item item){
         return item.quality < QUALITY_MAX;
     }
 
-    private static boolean isQualityMinOrBelow(Item item){
+    static boolean isQualityMinOrBelow(Item item){
         return item.quality <= QUALITY_MIN;
     }
 }
