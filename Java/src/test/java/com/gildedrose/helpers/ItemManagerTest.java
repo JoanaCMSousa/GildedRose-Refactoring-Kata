@@ -11,25 +11,25 @@ public class ItemManagerTest {
     @Test
     public void isAgedBrieTest(){
         Item item = new Item("Aged Brie", 10, 10);
-        assertTrue(ItemManager.isAgedBrieItem(item));
+        assertTrue(ItemManager.isAgedBrie(item));
     }
 
     @Test
     public void isLegendaryItemTest(){
         Item item = new Item("Sulfuras, Hand of Ragnaros", 10, 10);
-        assertTrue(ItemManager.isLegendaryItem(item));
+        assertTrue(ItemManager.isLegendary(item));
     }
 
     @Test
     public void isBackstagePassItemTest(){
         Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10);
-        assertTrue(ItemManager.isBackstagePassItem(item));
+        assertTrue(ItemManager.isBackstagePass(item));
     }
 
     @Test
     public void isConjuredItemTest(){
         Item item = new Item("Conjured Mana Cake", 10, 10);
-        assertTrue(ItemManager.isConjuredItem(item));
+        assertTrue(ItemManager.isConjured(item));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class ItemManagerTest {
     @Test
     public void hasSellInDaysFinishedTest(){
         Item item = new Item("Item", -1, 10);
-        assertTrue(ItemManager.hasSellInDaysFinished(item));
+        assertTrue(ItemManager.hasItemExpired(item));
         //TODO: Check other limits (1, 0)
     }
 

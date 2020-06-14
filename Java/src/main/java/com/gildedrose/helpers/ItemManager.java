@@ -11,37 +11,36 @@ public class ItemManager {
 
     private ItemManager(){}
 
-    //TODO: Remove Item in method name
-    public static boolean isAgedBrieItem(Item item){
+    public static boolean isAgedBrie(Item item){
         return item.name.equalsIgnoreCase(AGED_BRIE_ITEM);
     }
 
-    public static boolean isLegendaryItem(Item item){
+    public static boolean isLegendary(Item item){
         return item.name.equalsIgnoreCase(LEGENDARY_ITEM);
     }
 
-    public static boolean isBackstagePassItem(Item item){
+    public static boolean isBackstagePass(Item item){
         return item.name.equalsIgnoreCase(BACKSTAGE_PASS_ITEM);
     }
 
-    public static boolean isConjuredItem(Item item){
-        return item.name.toLowerCase().contains(CONJURED_ITEM);
-    } //TODO: startsWith instead of contains (?)
+    public static boolean isConjured(Item item){
+        return item.name.toLowerCase().startsWith(CONJURED_ITEM);
+    }
 
-    public static boolean isSellInDaysTenOrBelow(Item item){
+    static boolean isSellInDaysTenOrBelow(Item item){
         return item.sellIn <= 10;
     }
 
-    public static boolean isSellInDaysFiveOrBelow(Item item){
+    static boolean isSellInDaysFiveOrBelow(Item item){
         return item.sellIn <= 5;
     }
 
-    public static boolean hasSellInDaysFinished(Item item){
+    static boolean hasItemExpired(Item item){
         return item.sellIn < 0;
     }
 
     public static void updateAgedBrieQuality(Item item){
-        if (ItemManager.hasSellInDaysFinished(item)) {
+        if (hasItemExpired(item)) {
             QualityManager.increaseQuality(item, 2);
         } else {
             QualityManager.increaseQuality(item, 1);
@@ -50,7 +49,7 @@ public class ItemManager {
     }
 
     public static void updateBackstagePassQuality(Item item){
-        if(ItemManager.hasSellInDaysFinished(item) ){
+        if(hasItemExpired(item) ){
             QualityManager.setQualityToMin(item);
         }
         else {
@@ -66,7 +65,7 @@ public class ItemManager {
     }
 
     public static void updateConjuredItem(Item item){
-        if(ItemManager.hasSellInDaysFinished(item)){
+        if(hasItemExpired(item)){
             QualityManager.decreaseQuality(item, 4);
         } else {
             QualityManager.decreaseQuality(item, 2);
@@ -75,7 +74,7 @@ public class ItemManager {
     }
 
     public static void updateNormalItem(Item item){
-        if (ItemManager.hasSellInDaysFinished(item)) {
+        if (hasItemExpired(item)) {
             QualityManager.decreaseQuality(item, 2);
         } else {
             QualityManager.decreaseQuality(item, 1);
