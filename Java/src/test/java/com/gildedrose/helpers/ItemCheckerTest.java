@@ -50,7 +50,7 @@ public class ItemCheckerTest {
 
     @Test
     public void hasSellInDaysFinishedTest(){
-        Item item = new Item("Item", 0, 10);
+        Item item = new Item("Item", -1, 10);
         assertTrue(ItemChecker.hasSellInDaysFinished(item));
     }
 
