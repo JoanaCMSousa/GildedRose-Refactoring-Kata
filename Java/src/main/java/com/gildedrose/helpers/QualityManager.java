@@ -20,7 +20,7 @@ public class QualityManager {
     static void increaseQuality(Item item, int increaseBy){
         item.quality = item.quality + increaseBy;
 
-        if(!isQualityBelowMax(item)){
+        if(!isQualityMaxOrBelow(item)){
             item.quality = QUALITY_MAX;
         }
     }
@@ -29,8 +29,8 @@ public class QualityManager {
         item.quality = 0;
     }
 
-    static boolean isQualityBelowMax(Item item){
-        return item.quality < QUALITY_MAX;
+    static boolean isQualityMaxOrBelow(Item item){
+        return item.quality <= QUALITY_MAX;
     }
 
     static boolean isQualityMinOrBelow(Item item){

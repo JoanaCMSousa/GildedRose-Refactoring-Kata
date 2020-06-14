@@ -3,31 +3,41 @@ package com.gildedrose.helpers;
 import com.gildedrose.Item;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Random;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QualityManagerTest {
 
-    Random random = new Random(); //TODO: NO RANDOM
-
-    //TODO: Add more tests -> reaching 50 or 0
-
     @Test
     public void decreaseQualityTest(){
-        Item item = new Item("Item", 10, 20);
-        int valueToDecrease = random.nextInt(10);
+        Item item = new Item("Item", 10, 10);
+        int valueToDecrease = 5;
         QualityManager.decreaseQuality(item, valueToDecrease);
-        assertEquals(20 - valueToDecrease, item.quality);
+        assertEquals(5, item.quality);
+    }
+
+    @Test
+    public void decreaseQualityBelowMinReturnMin(){
+        Item item = new Item("Item", 10, 10);
+        int valueToDecrease = 12;
+        QualityManager.decreaseQuality(item, valueToDecrease);
+        assertEquals(0, item.quality);
     }
 
     @Test
     public void increaseQualityTest(){
-        Item item = new Item("Item", 10, 20);
-        int valueToIncrease = random.nextInt(10);
+        Item item = new Item("Item", 10, 10);
+        int valueToIncrease = 5;
         QualityManager.increaseQuality(item, valueToIncrease);
-        assertEquals(20 + valueToIncrease, item.quality);
+        assertEquals(15, item.quality);
+    }
+
+    @Test
+    public void increaseQualityAboveMaxReturnMaxTest(){
+        Item item = new Item("Item", 10, 10);
+        int valueToIncrease = 42;
+        QualityManager.increaseQuality(item, valueToIncrease);
+        assertEquals(50, item.quality);
     }
 
     @Test
@@ -39,15 +49,21 @@ public class QualityManagerTest {
 
     @Test
     public void isQualityBelowMaxTest(){
-        Item item = new Item("Item", 10, 49);
-        assertTrue(QualityManager.isQualityBelowMax(item));
-        //TODO: Check other limits (50, 51)
+        Item item1 = new Item("Item", 10, 49);
+        Item item2 = new Item("Item", 10, 50);
+        Item item3 = new Item("Item", 10, 51);
+        assertTrue(QualityManager.isQualityMaxOrBelow(item1));
+        assertTrue(QualityManager.isQualityMaxOrBelow(item2));
+        assertFalse(QualityManager.isQualityMaxOrBelow(item3));
     }
 
-//    @Test
-//    public void isQualityZeroTest(){
-//        Item item = new Item("Item", 10, 0);
-//        assertTrue(ItemChecker.isQualityMinOrBelow(item));
-//        //TODO: Check other value (-1, 1)
-//    }
+    @Test
+    public void isQualityMinOrBelow(){
+        Item item1 = new Item("Item", 10, 1);
+        Item item2 = new Item("Item", 10, 0);
+        Item item3 = new Item("Item", 10, -1);
+        assertFalse(QualityManager.isQualityMinOrBelow(item1));
+        assertTrue(QualityManager.isQualityMinOrBelow(item2));
+        assertTrue(QualityManager.isQualityMinOrBelow(item3));
+    }
 }
