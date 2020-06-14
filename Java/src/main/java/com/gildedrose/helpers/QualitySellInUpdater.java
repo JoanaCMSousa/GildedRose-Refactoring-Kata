@@ -13,7 +13,7 @@ public class QualitySellInUpdater {
         item.quality = item.quality - decreaseBy;
 
         if(isQualityMinOrBelow(item)){
-            item.quality = 0;
+            item.quality = QUALITY_MIN;
         }
     }
 
@@ -21,7 +21,7 @@ public class QualitySellInUpdater {
         item.quality = item.quality + increaseBy;
 
         if(!isQualityBelowMax(item)){
-            item.quality = 50;
+            item.quality = QUALITY_MAX;
         }
     }
 
