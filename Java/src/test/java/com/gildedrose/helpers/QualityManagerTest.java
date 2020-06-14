@@ -11,32 +11,28 @@ public class QualityManagerTest {
     @Test
     public void decreaseQualityTest(){
         Item item = new Item("Item", 10, 10);
-        int valueToDecrease = 5;
-        QualityManager.decreaseQuality(item, valueToDecrease);
+        QualityManager.decreaseQuality(item, 5);
         assertEquals(5, item.quality);
     }
 
     @Test
     public void decreaseQualityBelowMinReturnMin(){
         Item item = new Item("Item", 10, 10);
-        int valueToDecrease = 12;
-        QualityManager.decreaseQuality(item, valueToDecrease);
+        QualityManager.decreaseQuality(item, 12);
         assertEquals(0, item.quality);
     }
 
     @Test
     public void increaseQualityTest(){
         Item item = new Item("Item", 10, 10);
-        int valueToIncrease = 5;
-        QualityManager.increaseQuality(item, valueToIncrease);
+        QualityManager.increaseQuality(item, 5);
         assertEquals(15, item.quality);
     }
 
     @Test
     public void increaseQualityAboveMaxReturnMaxTest(){
         Item item = new Item("Item", 10, 10);
-        int valueToIncrease = 42;
-        QualityManager.increaseQuality(item, valueToIncrease);
+        QualityManager.increaseQuality(item, 42);
         assertEquals(50, item.quality);
     }
 

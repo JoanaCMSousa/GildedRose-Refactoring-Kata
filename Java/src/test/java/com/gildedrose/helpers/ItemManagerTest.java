@@ -63,73 +63,73 @@ public class ItemManagerTest {
 
     @Test
     public void updateAgedBrieQualityBeforeSellInIsDoneTest(){
-        Item itemPositiveSellInDays = new Item("Aged Brie", 10,10);
-        ItemManager.updateAgedBrieQuality(itemPositiveSellInDays);
-        assertEquals(11, itemPositiveSellInDays.quality);
+        Item item = new Item("Aged Brie", 10,10);
+        ItemManager.updateAgedBrieQuality(item);
+        assertEquals(11, item.quality);
     }
 
     @Test
     public void updateAgedBrieQualityAfterSellInIsDoneTest(){
-        Item itemNegativeSellInDays = new Item("Aged Brie", -1,10);
-        ItemManager.updateAgedBrieQuality(itemNegativeSellInDays);
-        assertEquals(12, itemNegativeSellInDays.quality);
+        Item item = new Item("Aged Brie", -1,10);
+        ItemManager.updateAgedBrieQuality(item);
+        assertEquals(12, item.quality);
     }
 
     @Test
     public void updateBackstagePassQualityBeforeTenDaysTest(){
-        Item normalBackStageItem = new Item("Backstage passes to a TAFKAL80ETC concert", 15,10);
-        ItemManager.updateBackstagePassQuality(normalBackStageItem);
-        assertEquals(11, normalBackStageItem.quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 15,10);
+        ItemManager.updateBackstagePassQuality(item);
+        assertEquals(11, item.quality);
     }
 
     @Test
     public void updateBackstagePassQualityAfterTenDaysTest(){
-        Item item10DaysSellIn = new Item("Backstage passes to a TAFKAL80ETC concert", 10,10);
-        ItemManager.updateBackstagePassQuality(item10DaysSellIn);
-        assertEquals(12, item10DaysSellIn.quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 10,10);
+        ItemManager.updateBackstagePassQuality(item);
+        assertEquals(12, item.quality);
     }
 
     @Test
     public void updateBackstagePassQualityAfterFiveDaysTest(){
-        Item item5DaysSellIn = new Item("Backstage passes to a TAFKAL80ETC concert", 5,10);
-        ItemManager.updateBackstagePassQuality(item5DaysSellIn);
-        assertEquals(13, item5DaysSellIn.quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 5,10);
+        ItemManager.updateBackstagePassQuality(item);
+        assertEquals(13, item.quality);
     }
 
     @Test
     public void updateBackstagePassQualityAfterZeroDaysTest(){
-        Item item0DaysSellIn = new Item("Backstage passes to a TAFKAL80ETC concert", -1,10);
-        ItemManager.updateBackstagePassQuality(item0DaysSellIn);
-        assertEquals(0, item0DaysSellIn.quality);
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", -1,10);
+        ItemManager.updateBackstagePassQuality(item);
+        assertEquals(0, item.quality);
     }
 
     @Test
     public void updateConjuredItemBeforeSellInZeroDaysTest(){
-        Item itemPositiveSellInDays = new Item("Conjured Mana Cake", 10,10);
-        ItemManager.updateConjuredItem(itemPositiveSellInDays);
-        assertEquals(8, itemPositiveSellInDays.quality);
+        Item item = new Item("Conjured Mana Cake", 10,10);
+        ItemManager.updateConjuredItem(item);
+        assertEquals(8, item.quality);
     }
 
     @Test
     public void updateConjuredItemAfterSellInZeroDaysTest(){
-        Item itemNegativeSellInDays = new Item("Conjured Mana Cake", -1,10);
-        ItemManager.updateConjuredItem(itemNegativeSellInDays);
-        assertEquals(6, itemNegativeSellInDays.quality);
+        Item item = new Item("Conjured Mana Cake", -1,10);
+        ItemManager.updateConjuredItem(item);
+        assertEquals(6, item.quality);
     }
 
     @Test
     public void updateNormalItemBeforeSellInZeroDaysTest(){
-        Item itemPositiveSellInDays = new Item("Item", 10,10);
-        ItemManager.updateNormalItem(itemPositiveSellInDays);
-        assertEquals(9, itemPositiveSellInDays.quality);
+        Item item = new Item("Item", 10,10);
+        ItemManager.updateNormalItem(item);
+        assertEquals(9, item.quality);
 
     }
 
     @Test
     public void updateNormalItemAfterSellInZeroDaysTest(){
-        Item itemNegativeSellInDays = new Item("Item", -1,10);
-        ItemManager.updateNormalItem(itemNegativeSellInDays);
-        assertEquals(8, itemNegativeSellInDays.quality);
+        Item item = new Item("Item", -1,10);
+        ItemManager.updateNormalItem(item);
+        assertEquals(8, item.quality);
     }
 
     @Test
