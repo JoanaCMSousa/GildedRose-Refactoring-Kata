@@ -4,22 +4,24 @@ import com.gildedrose.Item;
 
 public class QualitySellInUpdater {
 
+    private QualitySellInUpdater(){}
+
     public static void decreaseQuality(Item item, int decreaseDownTo){
-        if(item.quality - decreaseDownTo <= 0){
+        item.quality = item.quality - decreaseDownTo;
+
+        if(ItemChecker.isQualityMinOrBelow(item)){
             item.quality = 0;
         }
-        else {
-            item.quality = item.quality - decreaseDownTo;
-        }
+
     }
 
     public static void increaseQuality(Item item, int sumUpTo){
-        if((item.quality + sumUpTo) >= 50){
+        item.quality = item.quality + sumUpTo;
+
+        if(!ItemChecker.isQualityBelowMax(item)){
             item.quality = 50;
         }
-        else {
-            item.quality = item.quality + sumUpTo;
-        }
+
     }
 
     public static void decreaseSellIn(Item item){
