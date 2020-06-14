@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 
-public class QualitySellInUpdaterTest {
+public class QualityUpdaterTest {
 
     Random random = new Random(); //TODO: NO RANDOM
 
@@ -18,7 +18,7 @@ public class QualitySellInUpdaterTest {
     public void decreaseQualityTest(){
         Item item = new Item("Item", 10, 20);
         int valueToDecrease = random.nextInt(10);
-        QualitySellInUpdater.decreaseQuality(item, valueToDecrease);
+        QualityUpdater.decreaseQuality(item, valueToDecrease);
         assertEquals(20 - valueToDecrease, item.quality);
     }
 
@@ -26,21 +26,21 @@ public class QualitySellInUpdaterTest {
     public void increaseQualityTest(){
         Item item = new Item("Item", 10, 20);
         int valueToIncrease = random.nextInt(10);
-        QualitySellInUpdater.increaseQuality(item, valueToIncrease);
+        QualityUpdater.increaseQuality(item, valueToIncrease);
         assertEquals(20 + valueToIncrease, item.quality);
     }
 
     @Test
     public void decreaseQualityToZeroTest(){
         Item item = new Item("Item", 10, 10);
-        QualitySellInUpdater.setQualityToMin(item);
+        QualityUpdater.setQualityToMin(item);
         assertEquals(0, item.quality);
     }
 
     @Test
     public void isQualityBelowFiftyTest(){
         Item item = new Item("Item", 10, 49);
-        assertTrue(QualitySellInUpdater.isQualityBelowMax(item));
+        assertTrue(QualityUpdater.isQualityBelowMax(item));
         //TODO: Check other limits (50, 51)
     }
 
