@@ -1,8 +1,6 @@
 package com.gildedrose;
 
-import com.gildedrose.helpers.ItemChecker;
-import com.gildedrose.helpers.ItemUpdater;
-import com.gildedrose.helpers.QualitySellInUpdater;
+import com.gildedrose.helpers.ItemManager;
 
 import java.util.logging.Logger;
 
@@ -15,32 +13,33 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
+        for (Item item: items) {
 
+            //TODO: Validate Item
             if(item == null){
-                logger.info(String.format("Item with index %s is null. Skipping item", i));
+                logger.info("Found an invalid item. Skipping item");
                 continue;
             }
 
-            if(ItemChecker.isLegendaryItem(item)) {
-                item.sellIn = 0;
+            if(ItemManager.isLegendaryItem(item)) {
+                //Legendary items never changes in quality, and they never have to be sold
                 continue;
             }
 
-            QualitySellInUpdater.decreaseSellIn(item);
+            ItemManager.decreaseSellIn(item);
 
-            if(ItemChecker.isAgedBrieItem(item)){
-                ItemUpdater.updateAgedBrieQuality(item);
+
+            if(ItemManager.isAgedBrieItem(item)){
+                ItemManager.updateAgedBrieQuality(item);
             }
-            else if(ItemChecker.isBackstagePassItem(item)){
-                ItemUpdater.updateBackstagePassQuality(item);
+            else if(ItemManager.isBackstagePassItem(item)){
+                ItemManager.updateBackstagePassQuality(item);
             }
-            else if(ItemChecker.isConjuredItem(item)){
-                ItemUpdater.updateConjuredItem(item);
+            else if(ItemManager.isConjuredItem(item)){
+                ItemManager.updateConjuredItem(item);
             }
             else {
-                ItemUpdater.updateNormalItem(item);
+                ItemManager.updateNormalItem(item);
             }
         }
     }
