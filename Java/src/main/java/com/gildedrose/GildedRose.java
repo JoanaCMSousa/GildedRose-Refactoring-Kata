@@ -44,8 +44,8 @@ class GildedRose {
     }
 
     private boolean validateItem(Item item){
-        return item != null && item.name != null && !item.name.isEmpty() && item.sellIn >= 0 && item.quality >= 0
-                && isNormalItemAndQualityBelowMax(item) && isLegendaryAndQualityBelowMax(item);
+        return item != null && item.name != null && !item.name.isEmpty() && item.quality >= 0
+                && (isNormalItemAndQualityBelowMax(item) || isLegendaryAndQualityBelowMax(item));
     }
 
     private boolean isNormalItemAndQualityBelowMax(Item item){
