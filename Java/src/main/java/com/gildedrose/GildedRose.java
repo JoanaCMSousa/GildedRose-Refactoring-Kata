@@ -7,7 +7,7 @@ import com.gildedrose.helpers.QualitySellInUpdater;
 import java.util.logging.Logger;
 
 class GildedRose {
-    public static Logger logger=Logger.getLogger("global");
+    private final static Logger logger=Logger.getLogger("global");
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -24,6 +24,7 @@ class GildedRose {
             }
 
             if(ItemChecker.isLegendaryItem(item)) {
+                item.sellIn = 0;
                 continue;
             }
 
