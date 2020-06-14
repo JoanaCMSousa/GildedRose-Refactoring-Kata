@@ -3,8 +3,7 @@ package com.gildedrose.helpers;
 import com.gildedrose.Item;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemManagerTest {
 
@@ -34,23 +33,32 @@ public class ItemManagerTest {
 
     @Test
     public void isSellInDaysTenOrBelowTest(){
-        Item item = new Item("Item", 10, 10);
-        assertTrue(ItemManager.isSellInDaysTenOrBelow(item));
-        //TODO: Check other limits (9, 11)
+        Item item1 = new Item("Item", 9, 10);
+        Item item2 = new Item("Item", 10, 10);
+        Item item3 = new Item("Item", 11, 10);
+        assertTrue(ItemManager.isSellInDaysTenOrBelow(item1));
+        assertTrue(ItemManager.isSellInDaysTenOrBelow(item2));
+        assertFalse(ItemManager.isSellInDaysTenOrBelow(item3));
     }
 
     @Test
     public void isSellInDaysFiveOrBelowTest(){
-        Item item = new Item("Item", 5, 10);
-        assertTrue(ItemManager.isSellInDaysFiveOrBelow(item));
-        //TODO: Check other limits (4, 6)
+        Item item1 = new Item("Item", 4, 10);
+        Item item2 = new Item("Item", 5, 10);
+        Item item3 = new Item("Item", 6, 10);
+        assertTrue(ItemManager.isSellInDaysFiveOrBelow(item1));
+        assertTrue(ItemManager.isSellInDaysFiveOrBelow(item2));
+        assertFalse(ItemManager.isSellInDaysFiveOrBelow(item3));
     }
 
     @Test
-    public void hasSellInDaysFinishedTest(){
-        Item item = new Item("Item", -1, 10);
-        assertTrue(ItemManager.hasItemExpired(item));
-        //TODO: Check other limits (1, 0)
+    public void hasItemExpiredTest(){
+        Item item1 = new Item("Item", 1, 10);
+        Item item2 = new Item("Item", 0, 10);
+        Item item3 = new Item("Item", -1, 10);
+        assertFalse(ItemManager.hasItemExpired(item1));
+        assertFalse(ItemManager.hasItemExpired(item2));
+        assertTrue(ItemManager.hasItemExpired(item3));
     }
 
     @Test
