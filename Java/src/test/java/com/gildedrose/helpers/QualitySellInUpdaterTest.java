@@ -12,18 +12,18 @@ public class QualitySellInUpdaterTest {
 
     @Test
     public void decreaseQualityTest(){
-        Item item = new Item("Item", 10, 10);
-        int valueToDecrease = random.nextInt();
+        Item item = new Item("Item", 10, 20);
+        int valueToDecrease = random.nextInt(10);
         QualitySellInUpdater.decreaseQuality(item, valueToDecrease);
-        assertEquals(10 - valueToDecrease, item.quality);
+        assertEquals(20 - valueToDecrease, item.quality);
     }
 
     @Test
     public void increaseQualityTest(){
-        Item item = new Item("Item", 10, 10);
-        int valueToIncrease = random.nextInt();
+        Item item = new Item("Item", 10, 20);
+        int valueToIncrease = random.nextInt(10);
         QualitySellInUpdater.increaseQuality(item, valueToIncrease);
-        assertEquals(10 + valueToIncrease, item.quality);
+        assertEquals(20 + valueToIncrease, item.quality);
     }
 
     @Test

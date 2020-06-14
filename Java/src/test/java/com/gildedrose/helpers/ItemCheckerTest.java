@@ -33,7 +33,7 @@ public class ItemCheckerTest {
     @Test
     public void isQualityBelowFiftyTest(){
         Item item = new Item("Item", 10, 49);
-        assertTrue(ItemChecker.isQualityBelowFifty(item));
+        assertTrue(ItemChecker.isQualityBelowMax(item));
     }
 
     @Test
@@ -57,6 +57,6 @@ public class ItemCheckerTest {
     @Test
     public void isQualityZeroTest(){
         Item item = new Item("Item", 10, 0);
-        assertTrue(ItemChecker.isQualityZero(item));
+        assertTrue(ItemChecker.isQualityMinOrBelow(item));
     }
 }
