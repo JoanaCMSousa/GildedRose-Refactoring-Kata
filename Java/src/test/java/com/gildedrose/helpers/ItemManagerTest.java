@@ -9,26 +9,37 @@ public class ItemManagerTest {
 
     @Test
     public void isAgedBrieTest(){
-        Item item = new Item("Aged Brie", 10, 10);
-        assertTrue(ItemManager.isAgedBrie(item));
+        Item agedBrie = new Item("Aged Brie", 10, 10);
+        Item item = new Item("Armor", 10, 10);
+        assertTrue(ItemManager.isAgedBrie(agedBrie));
+        assertFalse(ItemManager.isAgedBrie(item));
     }
 
     @Test
     public void isLegendaryItemTest(){
-        Item item = new Item("Sulfuras, Hand of Ragnaros", 10, 10);
-        assertTrue(ItemManager.isLegendary(item));
+        Item legendaryItem = new Item("Sulfuras, Hand of Ragnaros", 10, 10);
+        Item item = new Item("Armor", 10, 10);
+        assertTrue(ItemManager.isLegendary(legendaryItem));
+        assertFalse(ItemManager.isLegendary(item));
+
     }
 
     @Test
-    public void isBackstagePassItemTest(){
-        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10);
-        assertTrue(ItemManager.isBackstagePass(item));
+    public void isBackstagePassTest(){
+        Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10);
+        Item item = new Item("Armor", 10, 10);
+        assertTrue(ItemManager.isBackstagePass(backstagePass));
+        assertFalse(ItemManager.isBackstagePass(item));
+
     }
 
     @Test
     public void isConjuredItemTest(){
-        Item item = new Item("Conjured Mana Cake", 10, 10);
-        assertTrue(ItemManager.isConjured(item));
+        Item conjured = new Item("Conjured Mana Cake", 10, 10);
+        Item item = new Item("Armor", 10, 10);
+        assertTrue(ItemManager.isConjured(conjured));
+        assertFalse(ItemManager.isConjured(item));
+
     }
 
     @Test
