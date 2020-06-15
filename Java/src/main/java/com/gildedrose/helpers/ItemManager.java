@@ -51,15 +51,12 @@ public class ItemManager {
     public static void updateBackstagePassQuality(Item item){
         if(hasItemExpired(item) ){
             QualityManager.setQualityToMin(item);
-        }
-        else {
-            if (ItemManager.isSellInDaysFiveOrBelow(item)) {
-                QualityManager.increaseQuality(item, 3);
-            } else if (ItemManager.isSellInDaysTenOrBelow(item)) {
-                QualityManager.increaseQuality(item, 2);
-            } else {
-                QualityManager.increaseQuality(item, 1);
-            }
+        } else if (ItemManager.isSellInDaysFiveOrBelow(item)) {
+            QualityManager.increaseQuality(item, 3);
+        } else if (ItemManager.isSellInDaysTenOrBelow(item)) {
+            QualityManager.increaseQuality(item, 2);
+        } else {
+            QualityManager.increaseQuality(item, 1);
         }
 
     }
