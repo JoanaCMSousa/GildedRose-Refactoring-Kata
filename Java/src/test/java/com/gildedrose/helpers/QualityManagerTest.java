@@ -72,12 +72,12 @@ public class QualityManagerTest {
         Item item5 = new Item("Item", 10, 25);
         Item item6 = new Item("Item", 10, -1);
         Item item7 = new Item("Item", 10, 51);
-        assertTrue(QualityManager.isQualityMinOrAbove(item1));
-        assertTrue(QualityManager.isQualityMinOrAbove(item2));
-        assertTrue(QualityManager.isQualityMinOrAbove(item3));
-        assertTrue(QualityManager.isQualityMinOrAbove(item4));
-        assertTrue(QualityManager.isQualityMinOrAbove(item5));
-        assertFalse(QualityManager.isQualityMinOrAbove(item6));
-        assertFalse(QualityManager.isQualityMinOrAbove(item7));
+        assertTrue(QualityManager.isQualityBetweenMinAndMax(item1));
+        assertTrue(QualityManager.isQualityBetweenMinAndMax(item2));
+        assertTrue(QualityManager.isQualityBetweenMinAndMax(item3));
+        assertTrue(QualityManager.isQualityBetweenMinAndMax(item4));
+        assertTrue(QualityManager.isQualityBetweenMinAndMax(item5));
+        assertFalse(QualityManager.isQualityBetweenMinAndMax(item6));
+        assertFalse(QualityManager.isQualityBetweenMinAndMax(item7));
     }
 }
