@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.helpers.ItemManager;
+import com.gildedrose.helpers.QualityManager;
 
 import java.util.logging.Logger;
 
@@ -16,7 +17,6 @@ class GildedRose {
         for (Item item: items) {
 
             if(!validateItem(item)){
-                logger.info("Found an invalid item. Skipping item");
                 continue;
             }
 
@@ -44,15 +44,22 @@ class GildedRose {
     }
 
     private boolean validateItem(Item item){
-        return item != null && item.name != null && !item.name.isEmpty() && item.quality >= 0
-                && (isNormalItemAndQualityBelowMax(item) || isLegendaryAndQualityBelowMax(item));
-    }
+        if(item == null){
+            logger.info("Invalid Item found. It is null. Item will be skipped");
+            return false;
+        } else if (item.name == null){
+            logger.info("Invalid Item found. Its name is null. Item will be skipped");
+            return false;
+        } else if (item.name.isEmpty()){
+            logger.info("Invalid Item found. Its name is empty. Item will be skipped");
+            return false;
+        } else if (!QualityManager.isQualityBetweenMinAndMax(item) && !ItemManager.isLegendary(item)){
+            logger.info(String.format("Invalid Item found. Item %s quality is not between Min and Max values. " +
+                    "Item will be skipped", item.name));
+            return false;
+        }
 
-    private boolean isNormalItemAndQualityBelowMax(Item item){
-        return !ItemManager.isLegendary(item) && item.quality <= 50;
-    }
+        return true;
 
-    private boolean isLegendaryAndQualityBelowMax(Item item){
-        return ItemManager.isLegendary(item) && item.quality <= 80;
     }
 }
