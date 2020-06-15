@@ -29,4 +29,8 @@ public class QualityManager {
     public static boolean isQualityMinOrAbove(Item item){
         return item.quality >= QUALITY_MIN;
     }
+
+    public static boolean isQualityBetweenMinAndMax(Item item){
+        return isQualityMaxOrBelow(item) && isQualityMinOrAbove(item);
+    }
 }
