@@ -16,13 +16,13 @@ public class TexttestFixture {
                 new Item("Armor", 3, -1),
                 new Item("Armor", 3, 51),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 40),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 40),
                 new Item("Conjured Mana Cake", 3, 6)};
 
         GildedRose app = new GildedRose(items);
 
-        int days = 2;
+        int days = 10;
         if (args.length > 0) {
             days = Integer.parseInt(args[0]) + 1;
         }
