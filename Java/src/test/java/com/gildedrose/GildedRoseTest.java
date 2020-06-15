@@ -26,13 +26,13 @@ class GildedRoseTest {
     }
 
     @Test
-    public void qualityIsNotNegativeTest(){
+    public void qualityIsNotBelowMinTest(){
         Item item = runGildedRose("Item", 10,0);
         assertTrue(item.quality >= 0);
     }
 
     @Test
-    public void qualityIsNotMoreThanFifty(){
+    public void qualityIsNotAboveMaxTest(){
         Item item = runGildedRose("Aged Brie", 5, 50);
         assertEquals(50, item.quality);
     }
@@ -99,20 +99,20 @@ class GildedRoseTest {
     }
 
     @Test
-    public void conjuredItemDecreaseTest(){
+    public void conjuredItemQualityDecreaseTest(){
         Item item = runGildedRose("Conjured Mana Cake", 5, 10);
         assertEquals(8, item.quality);
     }
 
     @Test
-    public void conjuredItemDecreaseTwiceAsMuch(){
+    public void conjuredItemQualityDecreaseTwiceAsMuch(){
         Item item = runGildedRose("Conjured Mana Cake", -1, 8);
         assertEquals(4, item.quality);
     }
 
     @Test
     public void conjuredItemSellInDecreaseTest(){
-        Item item =runGildedRose("Conjured Mana Cake", 11, 10);
+        Item item = runGildedRose("Conjured Mana Cake", 11, 10);
         assertEquals(10, item.sellIn);
     }
 

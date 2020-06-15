@@ -37,14 +37,14 @@ public class QualityManagerTest {
     }
 
     @Test
-    public void decreaseQualityToZeroTest(){
+    public void setQualityToMinTest(){
         Item item = new Item("Item", 10, 10);
         QualityManager.setQualityToMin(item);
         assertEquals(0, item.quality);
     }
 
     @Test
-    public void isQualityBelowMaxTest(){
+    public void isQualityMaxOrBelowTest(){
         Item item1 = new Item("Item", 10, 49);
         Item item2 = new Item("Item", 10, 50);
         Item item3 = new Item("Item", 10, 51);
@@ -54,12 +54,12 @@ public class QualityManagerTest {
     }
 
     @Test
-    public void isQualityMinOrBelow(){
+    public void isQualityMinOrAbove(){
         Item item1 = new Item("Item", 10, 1);
         Item item2 = new Item("Item", 10, 0);
         Item item3 = new Item("Item", 10, -1);
-        assertFalse(QualityManager.isQualityMinOrBelow(item1));
-        assertTrue(QualityManager.isQualityMinOrBelow(item2));
-        assertTrue(QualityManager.isQualityMinOrBelow(item3));
+        assertTrue(QualityManager.isQualityMinOrAbove(item1));
+        assertTrue(QualityManager.isQualityMinOrAbove(item2));
+        assertFalse(QualityManager.isQualityMinOrAbove(item3));
     }
 }
